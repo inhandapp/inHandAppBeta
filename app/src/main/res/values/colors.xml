@@ -3,4 +3,36 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-</resources>
+
+        <!-- primary colors -->
+        <item name="red" type="color">#FFCC0000</item>
+        <item name="blue" type="color">#2196F3</item>
+        <item name="yellow" type="color">#FFEB3B</item>
+
+        <!-- secondary colors -->
+        <item name="green" type="color">#FF99CC00</item>
+        <item name="purple" type="color">#FFAA66CC</item>
+        <item name="orange" type="color">#FFFFBB33</item>
+
+        <!-- light colors -->
+        <item name="pink" type="color">#FFFF4444</item>
+        <item name="lime" type="color">#8BC34A</item>
+        <item name="cyan" type="color">#00BCD4</item>
+        <item name="teal" type="color">#009688</item>
+        <item name="lightgreen" type="color">#4CAF50</item>
+
+        <!-- dark colors -->
+        <item name="indigo" type="color">#3F51B5</item>
+        <item name="darkblue" type="color">#0D47A1</item>
+        <item name="darkgreen" type="color">#FF669900</item>
+        <item name="darkpurple" type="color">#FF9933CC</item>
+        <item name="darkorange" type="color">#FFFF8800</item>
+
+        <!-- additional colors -->
+        <item name="white" type="color">#FFFFFF</item>
+        <item name="black" type="color">#212121</item>
+        <item name="grey" type="color">#424242</item>
+        <item name="steel" type="color">#607d8b</item>
+
+    </resources>
+

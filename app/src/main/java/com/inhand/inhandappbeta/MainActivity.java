@@ -1,19 +1,12 @@
 package com.inhand.inhandappbeta;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.provider.Settings;
 import android.view.View;
 import android.widget.ImageView;
-
-
 
 public class MainActivity extends Activity {
 
@@ -32,16 +25,14 @@ public class MainActivity extends Activity {
                 case STOPSPLASH:
                     //remove SplashScreen from view
                     splash.setVisibility(View.GONE);
-
                     launchSearchActivity();
-
                     break;
             }
             super.handleMessage(msg);
         }
+
     };
 
-    /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -52,23 +43,10 @@ public class MainActivity extends Activity {
         splashHandler.sendMessageDelayed(msg, SPLASHTIME);
     }
 
-
     public void launchSearchActivity(){
-
         Intent i= new Intent(this,SearchActivity.class);
         startActivity(i);
 
-
-
-
-
-        setContentView(R.layout.search_activity);
     }
-
-
-
-
-
-
 
 }

@@ -1,4 +1,12 @@
 <resources>
-    <string name="app_name">inHandAppBeta</string>
+
+    <string name="app_name">inHand</string>
     <string name="action_settings">Settings</string>
+    <string name="logoImage">LogoImage</string>
+    <string name="searchHint">inHand, can you find...</string>
+
+    <!-- menu -->
+    <string name="aboutMenu">About</string>
+    <string name="aboutApp">This app was created, designed and wholly owned by the inHand Team. All rights are reserved.</string>
+    <!-- end menu -->
 </resources>
