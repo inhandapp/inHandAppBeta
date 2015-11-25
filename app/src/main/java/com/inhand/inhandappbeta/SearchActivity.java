@@ -139,7 +139,7 @@ public class SearchActivity extends AppCompatActivity implements OnEditorActionL
         userEnteredSearchPhrase.setText("");
     }
 
-    /***************** START DATABASE OPERATION METHODS ********************/
+    /***************** END DATABASE OPERATION METHODS ********************/
 
 
 }
