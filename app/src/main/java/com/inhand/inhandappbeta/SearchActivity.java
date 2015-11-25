@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 public class SearchActivity extends AppCompatActivity implements OnEditorActionListener {
 
-    //Define variables for the widgets
+    //Define widget variables
     private EditText userEnteredSearchPhrase;
 
     //Define instance variables
@@ -85,7 +85,6 @@ public class SearchActivity extends AppCompatActivity implements OnEditorActionL
         //Parses String from EditText widget
         userEnteredSearchString = String.valueOf(userEnteredSearchPhrase);
 
-
         userEnteredSearchPhrase.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View view, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_DOWN) {
@@ -104,6 +103,6 @@ public class SearchActivity extends AppCompatActivity implements OnEditorActionL
         return false;
     }
 
-
 /***************** END USER STRING LISTENER & OPERATION METHODS ********************/
+
 }
