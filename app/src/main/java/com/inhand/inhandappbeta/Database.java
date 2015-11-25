@@ -13,8 +13,10 @@ public class Database extends SQLiteOpenHelper{
 
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "UserSearches.db";
-    public static final String TABLE_PRODUCTS = "Search";
+    public static final String TABLE_SEARCH = "Search";
+    public static final String COLUMN_ID = "_id";
     public static final String COLUMN_SearchString = "User String";
+
 
 
     public Database(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
@@ -25,7 +27,7 @@ public class Database extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
 
         //Create query
-        String query = "CREATE TABLE " + TABLE_PRODUCTS + " (" +  " INTEGER PRIMARY KEY " +
+        String query = "CREATE TABLE " + TABLE_SEARCH + " (" + COLUMN_ID + " INTEGER PRIMARY KEY " +
                 " AUTOINCREMENT, " + COLUMN_SearchString + " TEXT" + ");";
 
         //Execute query
@@ -36,34 +38,34 @@ public class Database extends SQLiteOpenHelper{
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
         //Delete table if it exists
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCTS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_SEARCH);
 
         //Create table
         onCreate(db);
     }
 
     //Add new row to database
-    public void addProduct (UserQuery UserQuery){
+    public static void addSearch(UserQuery UserQuery){
 
         ContentValues values = new ContentValues();
         values.put(COLUMN_SearchString, UserQuery.get_searchString());
         SQLiteDatabase db = getWritableDatabase();
-        db.insert(TABLE_PRODUCTS, null, values);
+        db.insert(TABLE_SEARCH, null, values);
         db.close();
     }
 
-    //Delete product from the database
-    public void deleteProduct (String productName){
+    //Delete search from the database
+    public static void deleteSearch(String searchString){
         SQLiteDatabase db = getWritableDatabase();   //gets reference to that database
-        db.execSQL("DELETE FROM " + TABLE_PRODUCTS + " WHERE " + COLUMN_SearchString + " = \""
-                + productName + "\";");
+        db.execSQL("DELETE FROM " + TABLE_SEARCH + " WHERE " + COLUMN_SearchString + " = \""
+                + searchString + "\";");
     }
 
     //Print db as a string
-    public List<UserQuery> databaseToString() {
+    public static List<UserQuery> databaseToString() {
         List<UserQuery> UserQuery = new ArrayList<UserQuery>();
         SQLiteDatabase db = getWritableDatabase();
-        String query = "SELECT * FROM " + TABLE_PRODUCTS + " WHERE 1";
+        String query = "SELECT * FROM " + TABLE_SEARCH + " WHERE 1";
 
         //Cursor points to a location in your results
         Cursor c = db.rawQuery(query, null);
@@ -82,7 +84,7 @@ public class Database extends SQLiteOpenHelper{
         return UserQuery;
     }
 
-    private UserQuery cursorToUserQuery(Cursor c){
+    private static UserQuery cursorToUserQuery(Cursor c){
         UserQuery UserQuery = new UserQuery();
         UserQuery.set_searchString((c.getString(1)));
 
