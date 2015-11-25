@@ -5,9 +5,4 @@
     <string name="logoImage">logoImage</string>
     <string name="searchHint">inHand, can you find...</string>
 
-    <!-- menu -->
-    <string name="aboutMenu">About</string>
-    <string name="aboutApp">All rights are reserved. This application was created, designed and wholly owned by the inHand Team.</string>
-    <!-- end menu -->
-
 </resources>
