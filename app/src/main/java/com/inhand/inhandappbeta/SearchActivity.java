@@ -94,7 +94,6 @@ public class SearchActivity extends AppCompatActivity implements OnEditorActionL
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 
-        return false; } /*
         //Parses String from EditText widget
         userEnteredSearchString = String.valueOf(userEnteredSearchPhrase);
 
@@ -121,7 +120,7 @@ public class SearchActivity extends AppCompatActivity implements OnEditorActionL
 
 
 /****************** START USER STRING LISTENER & OPERATION METHODS************/
-/*
+
 
     public void readURL(String keywords) {
         try {
@@ -143,6 +142,6 @@ public class SearchActivity extends AppCompatActivity implements OnEditorActionL
             Log.d("TAG", "SearchActivity");
         }
     }
-*/
+
     /****************** START USER STRING LISTENER & OPERATION METHODS************/
 }
