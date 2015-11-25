@@ -5,4 +5,12 @@
     <string name="logoImage">logoImage</string>
     <string name="searchHint">inHand, can you find...</string>
 
+    <!-- menu -->
+    <string name="aboutMenu">About</string>
+    <string name="aboutApp">Copyright © 2015 inHand Team. All rights reserved.
+                                            </string>
+    <string name="helpMenu">Help</string>
+    <string name="helpMessage">No help will be given, you are screwed.</string>
+    <!-- end menu -->
+
 </resources>

@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<!-- Copyright (C) 2009 The Android Open Source Project
+          http://www.apache.org/licenses/LICENSE-2.0
+-->
 
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dip">
 
-</RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="@string/aboutApp"
+        android:textColor="@color/grey" />
+
+    <TextView
+        android:id="@+id/about_credits"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dip"
+        android:textSize="16sp"
+        android:text="@string/aboutApp"
+        android:autoLink="web"
+        android:textColor="?android:attr/textColorPrimaryInverse" />
+
+</LinearLayout>

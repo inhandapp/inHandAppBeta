@@ -12,6 +12,7 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView.OnEditorActionListener;
+import android.widget.Toast;
 
 public class SearchActivity extends AppCompatActivity implements OnEditorActionListener {
 
@@ -41,6 +42,39 @@ public class SearchActivity extends AppCompatActivity implements OnEditorActionL
 
     /******************* START ABOUT MENU METHODS*********************************/
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    public void onAboutClick(MenuItem item) {
+
+        // Inflate the about message contents
+        View messageView = getLayoutInflater().inflate(R.layout.about, null, false);
+
+        // When linking text, force to always use default color. This works
+        // around a pressed color state bug.
+        TextView textView = (TextView) messageView.findViewById(R.id.about_credits);
+        int defaultColor = textView.getTextColors().getDefaultColor();
+        textView.setTextColor(defaultColor);
+
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+        builder.setIcon(R.drawable.logo);
+        builder.setTitle(R.string.app_name);
+        builder.setView(messageView);
+        builder.create();
+        builder.show();
+
+        // String aboutMessage = this.getResources().getString(R.string.aboutApp);
+        //Toast.makeText(getBaseContext(), aboutMessage, Toast.LENGTH_LONG).show();
+    }
+
+    public void onHelpClick(MenuItem item) {
+        String aboutMessage = this.getResources().getString(R.string.helpMessage);
+        Toast.makeText(getBaseContext(), aboutMessage, Toast.LENGTH_LONG).show();
+    }
 
     /***************** END ABOUT MENU METHODS ************************************/
 

@@ -8,6 +8,7 @@ import android.os.Message;
 import android.view.View;
 import android.widget.ImageView;
 
+
 public class MainActivity extends Activity {
 
     private static final int STOPSPLASH = 0;
@@ -48,4 +49,5 @@ public class MainActivity extends Activity {
         startActivity(i);
 
     }
+
 }
