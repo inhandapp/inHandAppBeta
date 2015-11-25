@@ -1,6 +1,7 @@
 package com.inhand.inhandappbeta;
 
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.util.Log;
@@ -37,7 +38,7 @@ public class SearchActivity extends AppCompatActivity implements OnEditorActionL
 
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        setContentView(R.layout.testgui);
+        setContentView(R.layout.search_activity);
 
         //Get references to widgets
         userEnteredSearchPhrase = (EditText) findViewById(R.id.searchbar);
@@ -47,6 +48,7 @@ public class SearchActivity extends AppCompatActivity implements OnEditorActionL
 
         //Get SharedPreferences object
         savedValues = getSharedPreferences("userEnteredSearchString", MODE_PRIVATE);
+
     }
 
     /******************* START ABOUT MENU METHODS*********************************/
@@ -86,11 +88,13 @@ public class SearchActivity extends AppCompatActivity implements OnEditorActionL
     /***************** END ABOUT MENU METHODS ************************************/
 
     /****************** START USER STRING LISTENER & OPERATION METHODS************/
-/*
 
- */
+
+
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+
+        return false; } /*
         //Parses String from EditText widget
         userEnteredSearchString = String.valueOf(userEnteredSearchPhrase);
 
@@ -114,7 +118,10 @@ public class SearchActivity extends AppCompatActivity implements OnEditorActionL
 
 /***************** END USER STRING LISTENER & OPERATION METHODS ********************/
 
+
+
 /****************** START USER STRING LISTENER & OPERATION METHODS************/
+/*
 
     public void readURL(String keywords) {
         try {
@@ -136,6 +143,6 @@ public class SearchActivity extends AppCompatActivity implements OnEditorActionL
             Log.d("TAG", "SearchActivity");
         }
     }
-
+*/
     /****************** START USER STRING LISTENER & OPERATION METHODS************/
 }
