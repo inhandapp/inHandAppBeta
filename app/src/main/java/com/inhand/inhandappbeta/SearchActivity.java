@@ -1,22 +1,24 @@
 package com.inhand.inhandappbeta;
 
-import android.content.SharedPreferences;
+
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
+import android.view.MenuItem;
+import android.view.KeyEvent;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.content.SharedPreferences;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView.OnEditorActionListener;
 
 public class SearchActivity extends AppCompatActivity implements OnEditorActionListener {
 
     //Define variables for the widgets
     private EditText userEnteredSearchPhrase;
+
+    //Define instance variables
     private String userEnteredSearchString;
 
     //Define the SharedPreferences object
@@ -68,10 +70,15 @@ public class SearchActivity extends AppCompatActivity implements OnEditorActionL
 
     /***************** END ABOUT MENU METHODS ********************/
 
+    /***************** START USER STRING LISTENER & OPERATION METHODS ********************/
+
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
         //Parses String from EditText widget
         userEnteredSearchString = String.valueOf(userEnteredSearchString);
         return false;
     }
+
+
+    /***************** END USER STRING LISTENER & OPERATION METHODS ********************/
 }
