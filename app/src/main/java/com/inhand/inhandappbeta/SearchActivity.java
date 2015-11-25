@@ -39,7 +39,9 @@ public class SearchActivity extends AppCompatActivity implements OnEditorActionL
 
     }
 
-    /***************** START ABOUT MENU METHODS ********************/
+    /*****************
+     * START ABOUT MENU METHODS
+     ********************/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -70,15 +72,34 @@ public class SearchActivity extends AppCompatActivity implements OnEditorActionL
 
     /***************** END ABOUT MENU METHODS ********************/
 
-    /***************** START USER STRING LISTENER & OPERATION METHODS ********************/
+    /*****************
+     * START USER STRING LISTENER & OPERATION METHODS
+     ********************/
 
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
         //Parses String from EditText widget
-        userEnteredSearchString = String.valueOf(userEnteredSearchString);
+        userEnteredSearchString = String.valueOf(userEnteredSearchPhrase);
+
+
+        userEnteredSearchPhrase.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View view, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    switch (keyCode) {
+                        case KeyEvent.KEYCODE_DPAD_CENTER:
+                        case KeyEvent.KEYCODE_ENTER:
+                            //TODO process search
+                            return true;
+                        default:
+                            break;
+                    }
+                }
+                return false;
+            }
+        });
         return false;
     }
 
 
-    /***************** END USER STRING LISTENER & OPERATION METHODS ********************/
+/***************** END USER STRING LISTENER & OPERATION METHODS ********************/
 }
