@@ -77,7 +77,9 @@ public class SearchActivity extends AppCompatActivity implements OnEditorActionL
     /***************** END ABOUT MENU METHODS ************************************/
 
     /****************** START USER STRING LISTENER & OPERATION METHODS************/
+/*
 
+ */
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
         //Parses String from EditText widget
