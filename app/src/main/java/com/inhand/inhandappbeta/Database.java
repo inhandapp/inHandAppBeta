@@ -45,7 +45,7 @@ public class Database extends SQLiteOpenHelper{
     }
 
     //Add new row to database
-    public static void addSearch(UserQuery UserQuery){
+    public void addSearch(UserQuery UserQuery){
 
         ContentValues values = new ContentValues();
         values.put(COLUMN_SearchString, UserQuery.get_searchString());
@@ -55,14 +55,14 @@ public class Database extends SQLiteOpenHelper{
     }
 
     //Delete search from the database
-    public static void deleteSearch(String searchString){
+    public void deleteSearch(String searchString){
         SQLiteDatabase db = getWritableDatabase();   //gets reference to that database
         db.execSQL("DELETE FROM " + TABLE_SEARCH + " WHERE " + COLUMN_SearchString + " = \""
                 + searchString + "\";");
     }
 
     //Print db as a string
-    public static List<UserQuery> databaseToString() {
+    public List<UserQuery> databaseToString() {
         List<UserQuery> UserQuery = new ArrayList<UserQuery>();
         SQLiteDatabase db = getWritableDatabase();
         String query = "SELECT * FROM " + TABLE_SEARCH + " WHERE 1";

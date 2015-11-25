@@ -128,7 +128,7 @@ public class SearchActivity extends AppCompatActivity implements OnEditorActionL
 
     //Prints db in log
     public void printDatabase() {
-        List<UserQuery> dbString = Database.databaseToString();
+        List<UserQuery> dbString = Database.databaseToString(userEnteredSearchString);
         String log ="";
 
         for(UserQuery pn : dbString) {
