@@ -67,8 +67,6 @@ public class SearchActivity extends AppCompatActivity implements OnEditorActionL
         builder.create();
         builder.show();
 
-        // String aboutMessage = this.getResources().getString(R.string.aboutApp);
-        //Toast.makeText(getBaseContext(), aboutMessage, Toast.LENGTH_LONG).show();
     }
 
     public void onHelpClick(MenuItem item) {
