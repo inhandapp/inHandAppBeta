@@ -4,15 +4,15 @@ package com.inhand.inhandappbeta;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Toast;
 import android.view.MenuItem;
 import android.view.KeyEvent;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.content.SharedPreferences;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView.OnEditorActionListener;
-import android.widget.Toast;
+
 
 public class SearchActivity extends AppCompatActivity implements OnEditorActionListener {
 
