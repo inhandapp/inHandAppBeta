@@ -2,6 +2,7 @@ package com.inhand.inhandappbeta;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Toast;
@@ -13,6 +14,8 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView.OnEditorActionListener;
 
+import java.util.List;
+
 
 public class SearchActivity extends AppCompatActivity implements OnEditorActionListener {
 
@@ -21,6 +24,7 @@ public class SearchActivity extends AppCompatActivity implements OnEditorActionL
 
     //Define instance variables
     private String userEnteredSearchString;
+    private static final String TAG = "SearchActivity";
 
     //Define the SharedPreferences object
     private SharedPreferences savedValues;
@@ -37,6 +41,8 @@ public class SearchActivity extends AppCompatActivity implements OnEditorActionL
 
         //Get SharedPreferences object
         savedValues = getSharedPreferences("userEnteredSearchString", MODE_PRIVATE);
+
+        printDatabase();
 
     }
 
@@ -101,6 +107,39 @@ public class SearchActivity extends AppCompatActivity implements OnEditorActionL
         return false;
     }
 
-/***************** END USER STRING LISTENER & OPERATION METHODS ********************/
+    /***************** END USER STRING LISTENER & OPERATION METHODS ********************/
+
+
+
+    /***************** START DATABASE OPERATION METHODS ********************/
+
+
+    public void addClick(View view){
+        UserQuery UserQuery = new UserQuery(userEnteredSearchPhrase.getText().toString());
+        Database.addSearch(UserQuery);
+        printDatabase();
+    }
+
+    public void deleteClick (View view){
+        String UserQuery = userEnteredSearchPhrase.getText().toString();
+        Database.deleteSearch(UserQuery);
+        printDatabase();
+    }
+
+    //Prints db in log
+    public void printDatabase() {
+        List<UserQuery> dbString = Database.databaseToString();
+        String log ="";
+
+        for(UserQuery pn : dbString) {
+            log += "User Entered Search: " + pn.get_id() + " Name: " + pn.get_searchString() + "\n";
+        }
+
+        Log.i(TAG, log);
+        userEnteredSearchPhrase.setText("");
+    }
+
+    /***************** START DATABASE OPERATION METHODS ********************/
+
 
 }
