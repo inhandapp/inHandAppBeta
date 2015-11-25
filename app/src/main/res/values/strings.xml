@@ -2,11 +2,12 @@
 
     <string name="app_name">inHand</string>
     <string name="action_settings">Settings</string>
-    <string name="logoImage">LogoImage</string>
+    <string name="logoImage">logoImage</string>
     <string name="searchHint">inHand, can you find...</string>
 
     <!-- menu -->
     <string name="aboutMenu">About</string>
-    <string name="aboutApp">This app was created, designed and wholly owned by the inHand Team. All rights are reserved.</string>
+    <string name="aboutApp"> © All rights are reserved. This application was created, designed and wholly owned by the inHand Team.</string>
     <!-- end menu -->
+
 </resources>
