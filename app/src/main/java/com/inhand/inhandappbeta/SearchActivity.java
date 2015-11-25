@@ -2,6 +2,7 @@ package com.inhand.inhandappbeta;
 
 
 import android.os.Bundle;
+import android.text.Editable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -36,7 +37,7 @@ public class SearchActivity extends AppCompatActivity implements OnEditorActionL
 
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        setContentView(R.layout.search_activity);
+        setContentView(R.layout.testgui);
 
         //Get references to widgets
         userEnteredSearchPhrase = (EditText) findViewById(R.id.searchbar);
@@ -46,7 +47,6 @@ public class SearchActivity extends AppCompatActivity implements OnEditorActionL
 
         //Get SharedPreferences object
         savedValues = getSharedPreferences("userEnteredSearchString", MODE_PRIVATE);
-
     }
 
     /******************* START ABOUT MENU METHODS*********************************/
@@ -136,4 +136,6 @@ public class SearchActivity extends AppCompatActivity implements OnEditorActionL
             Log.d("TAG", "SearchActivity");
         }
     }
+
+    /****************** START USER STRING LISTENER & OPERATION METHODS************/
 }
