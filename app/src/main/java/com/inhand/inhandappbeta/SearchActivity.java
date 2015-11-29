@@ -135,12 +135,11 @@ public class SearchActivity extends AppCompatActivity implements OnEditorActionL
                 "&RESPONSE-DATA-FORMAT=XML" +
                 "&REST-PAYLOAD" +
                 "&keywords=" + keywords);
-                //"&keywords=harry%20potter%20phoenix"); // original line of code
         BufferedReader in = new BufferedReader(new InputStreamReader(oracle.openStream()));
 
         String inputLine;
         while ((inputLine = in.readLine()) != null)
-            System.out.println(inputLine);
+            //System.out.println(inputLine);
         in.close();
        }
         catch(IOException e) {
