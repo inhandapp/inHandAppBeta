@@ -139,7 +139,7 @@ public class SearchActivity extends AppCompatActivity implements OnEditorActionL
 
         String inputLine;
         while ((inputLine = in.readLine()) != null)
-            //System.out.println(inputLine);
+            System.out.println(inputLine);
         in.close();
        }
         catch(IOException e) {
