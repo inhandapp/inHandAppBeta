@@ -1,21 +1,28 @@
 package com.inhand.inhandappbeta;
 
-import java.net.URL;
+
+import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Editable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-import java.io.IOException;
 import android.widget.Toast;
 import android.view.MenuItem;
 import android.view.KeyEvent;
-import java.io.BufferedReader;
 import android.widget.EditText;
 import android.widget.TextView;
-import java.io.InputStreamReader;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView.OnEditorActionListener;
+
+import java.io.BufferedReader;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
 
 
 public class SearchActivity extends AppCompatActivity implements OnEditorActionListener {
@@ -100,6 +107,8 @@ public class SearchActivity extends AppCompatActivity implements OnEditorActionL
                         case KeyEvent.KEYCODE_DPAD_CENTER:
                         case KeyEvent.KEYCODE_ENTER:
                             //TODO process search
+                            //readEbayUrl("");
+                            //readEbayUrlAlternate("");
                             return true;
                         default:
                             break;
@@ -118,16 +127,18 @@ public class SearchActivity extends AppCompatActivity implements OnEditorActionL
 /****************** START USER STRING LISTENER & OPERATION METHODS************/
 
 
-    public void readURL(String keywords) {
+    public void readEbayUrl(String keywords) {
         try {
-            URL oracle = new URL("http://svcs.ebay.com/services/search/FindingService/v1" +
+            keywords = keywords.replaceAll(" ", "%20");
+
+            URL eBayUrl = new URL("http://svcs.ebay.com/services/search/FindingService/v1" +
                 "?OPERATION-NAME=findItemsByKeywords" +
                 "&SERVICE-VERSION=1.0.0" +
                 "&SECURITY-APPNAME=inHanda34-8e86-4e05-9e5b-1fdeb7f3cab" +
                 "&RESPONSE-DATA-FORMAT=XML" +
                 "&REST-PAYLOAD" +
-                "&keywords=harry%20potter%20phoenix");
-        BufferedReader in = new BufferedReader(new InputStreamReader(oracle.openStream()));
+                "&keywords=" + keywords);
+        BufferedReader in = new BufferedReader(new InputStreamReader(eBayUrl.openStream()));
 
         String inputLine;
         while ((inputLine = in.readLine()) != null)
@@ -139,5 +150,35 @@ public class SearchActivity extends AppCompatActivity implements OnEditorActionL
         }
     }
 
+    public void readEbayUrlAlternate(String keywords) {
+        final String FILENAME = "eBay_feed.xml";
+        try {
+            // get input stream
+            URL eBayUrl = new URL("http://svcs.ebay.com/services/search/FindingService/v1" +
+                    "?OPERATION-NAME=findItemsByKeywords" +
+                    "&SERVICE-VERSION=1.0.0" +
+                    "&SECURITY-APPNAME=inHanda34-8e86-4e05-9e5b-1fdeb7f3cab" +
+                    "&RESPONSE-DATA-FORMAT=XML" +
+                    "&REST-PAYLOAD" +
+                    "&keywords=" + keywords);
+            InputStream in = eBayUrl.openStream();
+
+            //get the output stream
+            FileOutputStream out = openFileOutput(FILENAME, Context.MODE_PRIVATE);
+
+            //read input and write output
+            byte[] buffer = new byte[1024];
+            int bytesRead = in.read(buffer);
+            while (bytesRead != -1) {
+                out.write(buffer, 0, bytesRead);
+                bytesRead = in.read(buffer);
+            }
+            out.close();
+            in.close();
+        }
+        catch(IOException e) {
+            Log.d("TAG", e.toString());
+        }
+    }
     /****************** START USER STRING LISTENER & OPERATION METHODS************/
 }
