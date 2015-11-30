@@ -1,25 +1,21 @@
 package com.inhand.inhandappbeta;
 
-
-import android.graphics.Typeface;
+import java.net.URL;
 import android.os.Bundle;
-import android.text.Editable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import java.io.IOException;
 import android.widget.Toast;
 import android.view.MenuItem;
 import android.view.KeyEvent;
+import java.io.BufferedReader;
 import android.widget.EditText;
 import android.widget.TextView;
+import java.io.InputStreamReader;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView.OnEditorActionListener;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
 
 
 public class SearchActivity extends AppCompatActivity implements OnEditorActionListener {
