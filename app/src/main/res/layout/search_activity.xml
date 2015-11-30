@@ -26,5 +26,14 @@
             android:hint="@string/searchHint"
             />
 
+    <fragment
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:name="com.inhand.inhandappbeta.startFragment"
+        android:id="@+id/fragment"
+        tools:layout="@layout/fragment_start"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
 
 </RelativeLayout>
