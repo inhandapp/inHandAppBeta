@@ -43,7 +43,7 @@ implements OnEditorActionListener {
 
     //Define widget variables
     private EditText userEnteredSearchPhrase;
-    //private TextView titleTextView;
+    private TextView titleTextView;
     //private EditText searchFieldEditTextView;
     //private ListView itemsListView;
     //private Button submitButton;
@@ -132,9 +132,7 @@ implements OnEditorActionListener {
                     switch (keyCode) {
                         case KeyEvent.KEYCODE_DPAD_CENTER:
                         case KeyEvent.KEYCODE_ENTER:
-                            //TODO process search
-                            //readEbayUrl("");
-                            //readEbayUrlAlternate("");
+
                             return true;
                         default:
                             break;
@@ -160,7 +158,7 @@ implements OnEditorActionListener {
         @Override
         protected Void doInBackground(Void... params) {
             //io.downloadFile();
-            io.downloadFile(keywordsString);
+            io.downloadFile(userEnteredSearchString);
             return null;
         }
 
@@ -183,7 +181,7 @@ implements OnEditorActionListener {
             Log.d("eBay", "Search results read");
 
             // update the display for the activity
-            ItemsActivity.this.updateDisplay();
+            //ItemsActivity.this.updateDisplay();
         }
     }
 

@@ -24,12 +24,12 @@ import java.io.InputStreamReader;
 import java.net.URL;
 
 import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 
 import android.content.Context;
 import android.util.Log;
+
 
 public class eBayFileIO {
     private static final String TAG = "eBayFileIO";
