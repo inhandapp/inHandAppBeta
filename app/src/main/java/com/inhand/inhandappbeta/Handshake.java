@@ -1,3 +1,4 @@
+// FOR REFERENCE PURPOSES ONLY
 package com.inhand.inhandappbeta;
 
 import android.util.Log;
