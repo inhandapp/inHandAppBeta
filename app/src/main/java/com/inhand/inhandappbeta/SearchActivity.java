@@ -44,9 +44,9 @@ implements OnEditorActionListener {
     //Define widget variables
     private EditText userEnteredSearchPhrase;
     private TextView titleTextView;
-    //private EditText searchFieldEditTextView;
-    //private ListView itemsListView;
-    //private Button submitButton;
+    private EditText searchFieldEditTextView;
+    private ListView itemsListView;
+    private Button submitButton;
 
     //Define instance variables
     private String userEnteredSearchString = "";
@@ -221,7 +221,7 @@ implements OnEditorActionListener {
         Log.d("eBay", "Search results displayed");
     }
 
-    @Override
+    //@Override
     public void onItemClick(AdapterView<?> parent, View v,
                             int position, long id) {
 
