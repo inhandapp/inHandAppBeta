@@ -5,20 +5,20 @@ import com.inhand.inhandappbeta.eBayItem;
 import java.util.ArrayList;
 
 public class eBayURL {
-    private String title = null;
+    //private String title = null;
     private ArrayList<eBayItem> items;
 
     public eBayURL() {
         items = new ArrayList<eBayItem>();
     }
 
-    public void setTitle(String title) {
+    /*public void setTitle(String title) {
         this.title = title;
     }
 
     public String getTitle() {
         return title;
-    }
+    }*/
 
     public int addItem(eBayItem item) {
         items.add(item);

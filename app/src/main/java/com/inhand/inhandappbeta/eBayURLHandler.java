@@ -7,7 +7,7 @@ public class eBayURLHandler extends DefaultHandler {
     private eBayURL feed;
     private eBayItem item;
 
-    private boolean feedTitleHasBeenRead = false;
+    //private boolean feedTitleHasBeenRead = false;
 
     private boolean isTitle = false;
     private boolean isLink = false;
@@ -55,7 +55,7 @@ public class eBayURLHandler extends DefaultHandler {
     public void characters(char ch[], int start, int length)
     {
         String s = new String(ch, start, length);
-        if (isTitle) {
+        /*if (isTitle) {
             if (feedTitleHasBeenRead == false) {
                 feed.setTitle(s);
                 feedTitleHasBeenRead = true;
@@ -64,8 +64,9 @@ public class eBayURLHandler extends DefaultHandler {
                 item.setTitle(s);
             }
             isTitle = false;
-        }
-        else if (isCurrentPrice) {
+        }*/
+        //else if (isCurrentPrice) {
+        if (isCurrentPrice) {
             item.setPrice(s);
             isCurrentPrice = false;
         }

@@ -53,17 +53,8 @@ public class eBayFileIO {
             keywordsString = keywordsString.replaceAll(" ", "%20");
 
             // get the URL
-            // http://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0&SECURITY-APPNAME=inHanda34-8e86-4e05-9e5b-1fdeb7f3cab&RESPONSE-DATA-FORMAT=XML&REST-PAYLOAD&keywords=computers
-            URL url = new URL("http://svcs.ebay.com/services/search/FindingService/v1" +
-                    "?OPERATION-NAME=findItemsByKeywords" +
-                    "&SERVICE-VERSION=1.0.0" +
-                    "&SECURITY-APPNAME=inHanda34-8e86-4e05-9e5b-1fdeb7f3cab" +
-                    "&RESPONSE-DATA-FORMAT=XML" +
-                    "&REST-PAYLOAD" +
-                    "&keywords=" + keywordsString);
-
-            //URL url = new URL(URL_STRING + keywordsString);
-            //url = new URL(URL_STRING);
+            // http://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0&SECURITY-APPNAME=inHanda34-8e86-4e05-9e5b-1fdeb7f3cab&RESPONSE-DATA-FORMAT=XML&REST-PAYLOAD&keywords=
+            URL url = new URL(URL_STRING + keywordsString);
 
             // get the input stream
             InputStream in = url.openStream();
