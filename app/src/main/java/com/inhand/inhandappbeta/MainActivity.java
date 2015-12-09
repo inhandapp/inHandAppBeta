@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity implements OnEditorActionLis
     private EditText userEnteredSearchPhrase;
 
     //Define instance variables
-    private String userEnteredSearchString = "";
+    public String userEnteredSearchString = "";
     private final String TAG = "Problem!";
 
     //Define the SharedPreferences object

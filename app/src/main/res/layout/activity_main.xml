@@ -7,12 +7,95 @@
 
     <include
         layout="@layout/header_toolbar"
-        />
+        android:id="@+id/include_header" />
 
     <include
         layout="@layout/footer_toolbar"
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:id="@+id/include_footer" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/shoesImageView"
+        android:src="@drawable/shoes"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:adjustViewBounds="true"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+            android:layout_below="@+id/include_header"
+            android:layout_alignParentBottom="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/phoneImageView"
+        android:src="@drawable/phone"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:adjustViewBounds="true"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+            android:layout_below="@+id/include_header"
+            android:layout_alignParentBottom="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/booksImageView"
+        android:src="@drawable/books"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:adjustViewBounds="true"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+            android:layout_below="@+id/include_header"
+            android:layout_alignParentBottom="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/shoesImageView2"
+        android:src="@drawable/shoes"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:adjustViewBounds="true"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+            android:layout_below="@+id/include_header"
+            android:layout_above="@+id/include_footer" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/phoneImageView2"
+        android:src="@drawable/phone"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:adjustViewBounds="true"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+            android:layout_below="@+id/include_header"
+            android:layout_above="@+id/include_footer" />
+
+    <ImageView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:id="@+id/booksImageView2"
+       android:src="@drawable/books"
+       android:layout_alignParentLeft="true"
+       android:layout_alignParentStart="true"
+       android:adjustViewBounds="true"
+       android:cropToPadding="false"
+       android:scaleType="fitXY"
+           android:layout_below="@+id/include_header"
+            android:layout_above="@+id/include_footer" />
+
+
+
+
 </RelativeLayout>
