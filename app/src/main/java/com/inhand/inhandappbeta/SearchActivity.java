@@ -157,7 +157,8 @@ public class SearchActivity extends AppCompatActivity
     class DownloadURL extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {
-            //io.downloadFile();
+
+
             io.downloadFile(userEnteredSearchString);
             return null;
         }
