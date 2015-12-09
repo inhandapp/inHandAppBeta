@@ -1,26 +1,40 @@
 package com.inhand.inhandappbeta;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
+import android.view.MenuItem;
+import android.view.KeyEvent;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.support.v7.widget.Toolbar;
+import android.content.SharedPreferences;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView.OnEditorActionListener;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnEditorActionListener{
 
-    private EditText searchEditText;
+    //Define widget variables
+    private EditText userEnteredSearchPhrase;
+
+    //Define instance variables
+    private String userEnteredSearchString = "";
     private final String TAG = "Problem!";
+
+    //Define the SharedPreferences object
+    private SharedPreferences savedValues;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        searchEditText = (EditText) findViewById(R.id.search_bar);
-        searchEditText.setVisibility(View.GONE);
+        userEnteredSearchPhrase = (EditText) findViewById(R.id.search_bar);
+        userEnteredSearchPhrase.setVisibility(View.GONE);
+
+        //Set listener for EditText widget
+        userEnteredSearchPhrase.setOnEditorActionListener(this);
 
         //include toolbar
         Toolbar myToolbar = (Toolbar) findViewById(R.id.logo_bar);
@@ -30,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
         } catch (NullPointerException e){
             Log.v(TAG,"NullPointer");
         }
+
+        //Get SharedPreferences object
+        savedValues = getSharedPreferences("userEnteredSearchString", MODE_PRIVATE);
     }
 
     @Override
@@ -51,11 +68,37 @@ public class MainActivity extends AppCompatActivity {
 
     public void launchSearchActivity(){
 
-        if(searchEditText.getVisibility() == View.GONE){
-            searchEditText.setVisibility(View.VISIBLE);
+        if(userEnteredSearchPhrase.getVisibility() == View.GONE){
+            userEnteredSearchPhrase.setVisibility(View.VISIBLE);
         }
         else {
-            searchEditText.setVisibility(View.GONE);
+            userEnteredSearchPhrase.setVisibility(View.GONE);
         }
     }
+
+    @Override
+    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+
+        //Parses String from EditText widget
+        userEnteredSearchString = String.valueOf(userEnteredSearchPhrase);
+
+        userEnteredSearchPhrase.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View view, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    switch (keyCode) {
+                        case KeyEvent.KEYCODE_DPAD_CENTER:
+                        case KeyEvent.KEYCODE_ENTER:
+
+                            return true;
+                        default:
+                            break;
+                    }
+                }
+                return false;
+            }
+        });
+        return false;
+    }
+
+
 }
