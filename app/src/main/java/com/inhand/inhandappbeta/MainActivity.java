@@ -1,55 +1,61 @@
 package com.inhand.inhandappbeta;
 
-import android.view.View;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.app.Activity;
-import android.content.Intent;
-import android.widget.ImageView;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
-    //Define instance variables
-    private static final int STOPSPLASH = 0;
-    private static final long SPLASHTIME = 3000;
-
-    //Define widget variables
-    private ImageView splash;
+    private EditText searchEditText;
+    private final String TAG = "Problem!";
 
     @Override
-    public void onCreate(Bundle icicle) {
-        super.onCreate(icicle);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        splash = (ImageView) findViewById(R.id.splashscreen);
-        Message msg = new Message();
-        msg.what = STOPSPLASH;
-        splashHandler.sendMessageDelayed(msg, SPLASHTIME);
+
+        searchEditText = (EditText) findViewById(R.id.search_bar);
+        searchEditText.setVisibility(View.GONE);
+
+        //include toolbar
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.logo_bar);
+        setSupportActionBar(myToolbar);
+        try {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        } catch (NullPointerException e){
+            Log.v(TAG,"NullPointer");
+        }
     }
 
-    /******************* START SPLASH SCREEN METHODS*********************************/
-
-    private  Handler splashHandler = new Handler() {
-
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case STOPSPLASH:
-                    //remove SplashScreen from view
-                    splash.setVisibility(View.GONE);
-                    launchSearchActivity();
-                    break;
-            }
-            super.handleMessage(msg);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_search:
+                launchSearchActivity();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-    };
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
 
     public void launchSearchActivity(){
-        Intent i= new Intent(this,SearchActivity.class);
-        startActivity(i);
+
+        if(searchEditText.getVisibility() == View.GONE){
+            searchEditText.setVisibility(View.VISIBLE);
+        }
+        else {
+            searchEditText.setVisibility(View.GONE);
+        }
     }
-
-    /******************* END SPLASH SCREEN METHODS*********************************/
-
 }
