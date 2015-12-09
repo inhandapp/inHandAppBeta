@@ -1,35 +1,20 @@
 package com.inhand.inhandappbeta;
 
-import android.content.Context;
+import java.net.URL;
 import android.util.Log;
-
-import org.xml.sax.InputSource;
-import org.xml.sax.XMLReader;
-
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
-
+import org.xml.sax.XMLReader;
+import java.io.BufferedReader;
+import android.content.Context;
+import org.xml.sax.InputSource;
+import java.io.FileInputStream;
+import org.xml.sax.InputSource;
+import android.content.Context;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-
-import javax.xml.parsers.SAXParser;
-import org.xml.sax.InputSource;
-import org.xml.sax.XMLReader;
-
-import android.content.Context;
-import android.util.Log;
-
 
 public class eBayFileIO {
     private static final String TAG = "eBayFileIO";

@@ -1,7 +1,24 @@
 package com.inhand.inhandappbeta;
 
-/**
- * Created by Adrian on 12/7/2015.
- */
+import java.util.ArrayList;
+
 public class walmartURL {
+    private ArrayList<walmartItem> items;
+
+    public walmartURL() {
+        items = new ArrayList<walmartItem>();
+    }
+
+    public int addItem(walmartItem item) {
+        items.add(item);
+        return items.size();
+    }
+
+    public walmartItem getItem(int index) {
+        return items.get(index);
+    }
+
+    public ArrayList<walmartItem> getAllItems() {
+        return items;
+    }
 }
