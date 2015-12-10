@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity implements OnEditorActionLis
 
     //Define widget variables
     private EditText userEnteredSearchPhrase;
+    private Toolbar header_toolbar;
 
     //Define instance variables
     public String userEnteredSearchString = "";
