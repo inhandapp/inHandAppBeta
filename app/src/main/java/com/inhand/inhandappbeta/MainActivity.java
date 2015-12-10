@@ -84,10 +84,12 @@ public class MainActivity extends AppCompatActivity implements OnEditorActionLis
                 if (event.getAction() == KeyEvent.ACTION_DOWN) {
                     switch (keyCode) {
                         case KeyEvent.KEYCODE_ENTER:
+
                             //Parses String from EditText widget
                             userEnteredSearchString = String.valueOf(userEnteredSearchPhrase);
 
                             return true;
+
                         default:
                             break;
                     }
