@@ -6,15 +6,13 @@
     tools:context="com.inhand.ihand_gui_v2.MainActivity">
 
     <include
-        layout="@layout/header_toolbar"
-        android:id="@+id/include_header" />
+        layout="@layout/header_toolbar" />
 
     <include
         layout="@layout/footer_toolbar"
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/include_footer" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
