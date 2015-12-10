@@ -6,7 +6,16 @@
     tools:context="com.inhand.ihand_gui_v2.MainActivity">
 
     <include
-        layout="@layout/header_toolbar" />
+        layout="@layout/header_toolbar"
+ />
+
+
+    <include
+        layout="@layout/image_activity"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true" />
 
     <include
         layout="@layout/footer_toolbar"
