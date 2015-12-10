@@ -65,7 +65,7 @@ public class SearchActivity extends AppCompatActivity
 
         //Get references to widgets
         //userEnteredSearchPhrase = (EditText) findViewById(R.id.searchbar);
-        //searchFieldEditTextView = (EditText) findViewById(R.id.searchFieldEditText);
+        //searchFieldEditTxtView = (EditText) findViewById(R.id.searchFieldEditText);
         //titleTextView = (TextView) findViewById(R.id.titleTextView);
         //itemsListView = (ListView) findViewById(R.id.itemsListView);
         //submitButton = (Button) findViewById(R.id.submitButton);
