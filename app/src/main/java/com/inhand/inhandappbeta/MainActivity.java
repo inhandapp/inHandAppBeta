@@ -1,6 +1,5 @@
 package com.inhand.inhandappbeta;
 
-import android.os.Handler;
 import android.util.Log;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,7 +7,6 @@ import android.view.View;
 import android.view.MenuItem;
 import android.view.KeyEvent;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
 import android.content.SharedPreferences;
@@ -31,8 +29,6 @@ public class MainActivity extends AppCompatActivity implements OnEditorActionLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        startslideshow();
 
         userEnteredSearchPhrase = (EditText) findViewById(R.id.search_bar);
         userEnteredSearchPhrase.setVisibility(View.GONE);
@@ -104,54 +100,4 @@ public class MainActivity extends AppCompatActivity implements OnEditorActionLis
         return false;
     }
 
-    public void startslideshow(){
-
-        String shoes = "shoes";
-        String phone = "phone";
-        String books = "books";
-
-        //image ids
-        int shoesImage = getResources().getIdentifier("com.inhand.inhandappbeta:drawable/" + shoes, null, null);
-        int phoneImage = getResources().getIdentifier("com.inhand.inhandappbeta:drawable/" + phone, null, null);
-        int booksImage = getResources().getIdentifier("com.inhand.inhandappbeta:drawable/" + books, null, null);
-
-        ImageView slideshowLarge = (ImageView) findViewById(R.id.slideshowLarge);
-
-        final Handler handler = new Handler();
-
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-
-                String shoes = "shoes";
-                String phone = "phone";
-                String books = "books";
-
-                //image ids
-                int shoesImage = getResources().getIdentifier("com.inhand.inhandappbeta:drawable/" + shoes, null, null);
-                int phoneImage = getResources().getIdentifier("com.inhand.inhandappbeta:drawable/" + phone, null, null);
-                int booksImage = getResources().getIdentifier("com.inhand.inhandappbeta:drawable/" + books, null, null);
-
-
-                ImageView slideshowLarge = (ImageView) findViewById(R.id.slideshowLarge);
-
-                int i = 1;
-
-                while (true) {
-
-                    if (i == 1) {
-                        slideshowLarge.setImageResource(shoesImage);
-                        handler.postDelayed(this, 5000); i++;
-                    } else if (i == 2) {
-                        slideshowLarge.setImageResource(phoneImage);
-                        handler.postDelayed(this, 5000); i++;
-                    } else if (i == 2) {
-                        slideshowLarge.setImageResource(booksImage);
-                        handler.postDelayed(this, 5000); i++;
-                    }
-
-                }
-            }
-            });
-    }
 }
