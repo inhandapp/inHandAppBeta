@@ -79,15 +79,13 @@ public class MainActivity extends AppCompatActivity implements OnEditorActionLis
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 
-        //Parses String from EditText widget
-        userEnteredSearchString = String.valueOf(userEnteredSearchPhrase);
-
         userEnteredSearchPhrase.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View view, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_DOWN) {
                     switch (keyCode) {
-                        case KeyEvent.KEYCODE_DPAD_CENTER:
                         case KeyEvent.KEYCODE_ENTER:
+                            //Parses String from EditText widget
+                            userEnteredSearchString = String.valueOf(userEnteredSearchPhrase);
 
                             return true;
                         default:
