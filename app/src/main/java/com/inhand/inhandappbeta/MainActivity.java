@@ -7,8 +7,10 @@ import android.util.Log;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnKeyListener;
 import android.view.MenuItem;
 import android.view.KeyEvent;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -28,7 +30,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MainActivity extends AppCompatActivity implements OnEditorActionListener{
+public class MainActivity extends AppCompatActivity
+        //implements OnKeyListener {
+        implements OnEditorActionListener {
 
     //Define class variables
     private eBayURL url;
@@ -58,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements OnEditorActionLis
         userEnteredSearchPhrase.setVisibility(View.GONE);
 
         //Set listener for EditText widget
+        //userEnteredSearchPhrase.setOnKeyListener(this);
         userEnteredSearchPhrase.setOnEditorActionListener(this);
 
         //include toolbar
@@ -99,7 +104,17 @@ public class MainActivity extends AppCompatActivity implements OnEditorActionLis
             userEnteredSearchPhrase.setVisibility(View.GONE);
         }
     }
+    /*
+    @Override
+    public boolean onKey(View v, int keyCode, KeyEvent event) {
+        if (event.getKeyCode() == KeyEvent.FLAG_EDITOR_ACTION) {
+            Log.i(TAG, "Enter pressed");
+        }
 
+        return false;
+    }
+    */
+    /*
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 
@@ -122,14 +137,28 @@ public class MainActivity extends AppCompatActivity implements OnEditorActionLis
             }
         });
         return false;
+    }*/
+
+    @Override
+    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+        int keyCode = -1;
+        if (event != null) {
+            keyCode = event.getKeyCode();
+        }
+        if (actionId == EditorInfo.IME_ACTION_DONE ||
+                actionId == EditorInfo.IME_ACTION_UNSPECIFIED ||
+                keyCode == KeyEvent.KEYCODE_DPAD_CENTER ||
+                keyCode == KeyEvent.KEYCODE_ENTER) {
+            Log.d(TAG, "Entered");
+            new DownloadURL().execute();
+        }
+        return false;
     }
 
 
     class DownloadURL extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {
-
-
             io.downloadFile(userEnteredSearchString);
             return null;
         }
