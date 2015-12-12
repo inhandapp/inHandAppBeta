@@ -55,6 +55,10 @@ public class eBayURLHandler extends DefaultHandler {
     public void characters(char ch[], int start, int length)
     {
         String s = new String(ch, start, length);
+        if (isTitle) {
+            item.setTitle(s);
+            isTitle = false;
+        }
         /*if (isTitle) {
             if (feedTitleHasBeenRead == false) {
                 feed.setTitle(s);

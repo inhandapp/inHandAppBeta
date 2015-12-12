@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity
         implements OnEditorActionListener {
 
     //Define class variables
-    private eBayURL url;
+    public eBayURL url;
     private eBayFileIO io;
 
     //Define widget variables
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity
 
     //Define instance variables
     public String userEnteredSearchString = "";
-    private final String TAG = "Problem!";
+    private final String TAG = "MainAct Problem!";
 
     //Define the SharedPreferences object
     private SharedPreferences savedValues;
@@ -59,10 +59,10 @@ public class MainActivity extends AppCompatActivity
         io = new eBayFileIO(getApplicationContext());
 
         userEnteredSearchPhrase = (EditText) findViewById(R.id.search_bar);
+
         userEnteredSearchPhrase.setVisibility(View.GONE);
 
         //Set listener for EditText widget
-        //userEnteredSearchPhrase.setOnKeyListener(this);
         userEnteredSearchPhrase.setOnEditorActionListener(this);
 
         //include toolbar
@@ -104,16 +104,7 @@ public class MainActivity extends AppCompatActivity
             userEnteredSearchPhrase.setVisibility(View.GONE);
         }
     }
-    /*
-    @Override
-    public boolean onKey(View v, int keyCode, KeyEvent event) {
-        if (event.getKeyCode() == KeyEvent.FLAG_EDITOR_ACTION) {
-            Log.i(TAG, "Enter pressed");
-        }
 
-        return false;
-    }
-    */
     /*
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -149,8 +140,11 @@ public class MainActivity extends AppCompatActivity
                 actionId == EditorInfo.IME_ACTION_UNSPECIFIED ||
                 keyCode == KeyEvent.KEYCODE_DPAD_CENTER ||
                 keyCode == KeyEvent.KEYCODE_ENTER) {
-            Log.d(TAG, "Entered");
+
+            userEnteredSearchString = userEnteredSearchPhrase.getText().toString();
+
             new DownloadURL().execute();
+
         }
         return false;
     }
@@ -182,122 +176,11 @@ public class MainActivity extends AppCompatActivity
             Log.d("eBay", "Search results read");
 
             // update the display for the activity
-            //ItemsActivity.this.updateDisplay();
+            Intent intent = new Intent (getApplicationContext(), ResultsActivity.class);
+            DataHolder.getInstance().setData(url);
+            startActivity(intent);
         }
     }
-
-    public void updateDisplay()
-    {
-        if (url == null) {
-            titleTextView.setText("Unable to get eBay search results");
-            return;
-        }
-
-        // set the title for the url
-        //titleTextView.setText(url.getTitle());
-
-        // get the items for the url
-        ArrayList<eBayItem> items = url.getAllItems();
-
-        // create a List of Map<String, ?> objects
-        ArrayList<HashMap<String, String>> data =
-                new ArrayList<HashMap<String, String>>();
-        for (eBayItem item : items) {
-            HashMap<String, String> map = new HashMap<String, String>();
-            map.put("title", item.getTitle());
-            map.put("currentPrice", item.getPrice());
-            data.add(map);
-        }
-
-        // create the resource, from, and to variables
-        int resource = R.layout.listview_item;
-        String[] from = {"title", "currentPrice"};
-        int[] to = {R.id.titleTextView, R.id.currentPriceTextView};
-
-        // create and set the adapter
-        SimpleAdapter adapter =
-                new SimpleAdapter(this, data, resource, from, to);
-        itemsListView.setAdapter(adapter);
-
-        Log.d("eBay", "Search results displayed");
-    }
-
-    //@Override
-    public void onItemClick(AdapterView<?> parent, View v,
-                            int position, long id) {
-
-        // get the item at the specified position
-        eBayItem item = url.getItem(position);
-
-        // create an intent
-        Intent intent = new Intent(this, ItemActivity.class);
-
-        intent.putExtra("title", item.getTitle());
-        intent.putExtra("currentPrice", item.getPrice());
-        intent.putExtra("link", item.getLink());
-
-        this.startActivity(intent);
-    }
-
 /***************** END USER STRING LISTENER & OPERATION METHODS ********************/
 
-
-
-    /****************** START USER STRING LISTENER & OPERATION METHODS************/
-
-
-    public void readEbayUrl(String keywords) {
-        try {
-            keywords = keywords.replaceAll(" ", "%20");
-
-            URL eBayUrl = new URL("http://svcs.ebay.com/services/search/FindingService/v1" +
-                    "?OPERATION-NAME=findItemsByKeywords" +
-                    "&SERVICE-VERSION=1.0.0" +
-                    "&SECURITY-APPNAME=inHanda34-8e86-4e05-9e5b-1fdeb7f3cab" +
-                    "&RESPONSE-DATA-FORMAT=XML" +
-                    "&REST-PAYLOAD" +
-                    "&keywords=" + keywords);
-            BufferedReader in = new BufferedReader(new InputStreamReader(eBayUrl.openStream()));
-
-            String inputLine;
-            while ((inputLine = in.readLine()) != null)
-                System.out.println(inputLine);
-            in.close();
-        }
-        catch(IOException e) {
-            Log.d("TAG", "SearchActivity");
-        }
-    }
-
-    public void readEbayUrlAlternate(String keywords) {
-        final String FILENAME = "eBay_feed.xml";
-        try {
-            // get input stream
-            URL eBayUrl = new URL("http://svcs.ebay.com/services/search/FindingService/v1" +
-                    "?OPERATION-NAME=findItemsByKeywords" +
-                    "&SERVICE-VERSION=1.0.0" +
-                    "&SECURITY-APPNAME=inHanda34-8e86-4e05-9e5b-1fdeb7f3cab" +
-                    "&RESPONSE-DATA-FORMAT=XML" +
-                    "&REST-PAYLOAD" +
-                    "&keywords=" + keywords);
-            InputStream in = eBayUrl.openStream();
-
-            //get the output stream
-            FileOutputStream out = openFileOutput(FILENAME, Context.MODE_PRIVATE);
-
-            //read input and write output
-            byte[] buffer = new byte[1024];
-            int bytesRead = in.read(buffer);
-            while (bytesRead != -1) {
-                out.write(buffer, 0, bytesRead);
-                bytesRead = in.read(buffer);
-            }
-            out.close();
-            in.close();
-        }
-        catch(IOException e) {
-            Log.d("TAG", e.toString());
-        }
-    }
-    /****************** START USER STRING LISTENER & OPERATION METHODS************/
 }
