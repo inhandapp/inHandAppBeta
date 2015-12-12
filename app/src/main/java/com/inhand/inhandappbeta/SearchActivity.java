@@ -1,4 +1,8 @@
-package com.inhand.inhandappbeta;
+// Functionality for SearchActivity has been split between MainActivity and ResultsActivity classes.
+// Let me know if you have any questions about the changes.
+// Retain this activity until final build. -Aryan
+
+/*package com.inhand.inhandappbeta;
 
 import java.net.URL;
 
@@ -79,9 +83,9 @@ public class SearchActivity extends AppCompatActivity
         savedValues = getSharedPreferences("userEnteredSearchString", MODE_PRIVATE);
 
     }
-
+*/
     /******************* START ABOUT MENU METHODS*********************************/
-
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // inflate the menu; this adds items to the action bar if it is present.
@@ -96,9 +100,9 @@ public class SearchActivity extends AppCompatActivity
 
         // When linking text, force to always use default color. This works
         // around a pressed color state bug.
-        /*TextView textView = (TextView) messageView.findViewById(R.id.about_credits);
-        int defaultColor = textView.getTextColors().getDefaultColor();
-        textView.setTextColor(defaultColor);*/
+        //TextView textView = (TextView) messageView.findViewById(R.id.about_credits);
+        //int defaultColor = textView.getTextColors().getDefaultColor();
+        //textView.setTextColor(defaultColor);
 
         android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
         //builder.setIcon(R.drawable.logo);
@@ -108,7 +112,8 @@ public class SearchActivity extends AppCompatActivity
         builder.show();
 
     }
-
+*/
+/*
     public void onHelpClick(MenuItem item) {
         String aboutMessage = this.getResources().getString(R.string.helpMessage);
         Toast.makeText(getBaseContext(), aboutMessage, Toast.LENGTH_LONG).show();
@@ -118,7 +123,7 @@ public class SearchActivity extends AppCompatActivity
 
     /****************** START USER STRING LISTENER & OPERATION METHODS************/
 
-
+/*
 
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -153,7 +158,7 @@ public class SearchActivity extends AppCompatActivity
                 break;
         }
     }*/
-
+/*
     class DownloadURL extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {
@@ -238,14 +243,14 @@ public class SearchActivity extends AppCompatActivity
 
         this.startActivity(intent);
     }
-
+*/
 /***************** END USER STRING LISTENER & OPERATION METHODS ********************/
 
 
 
     /****************** START USER STRING LISTENER & OPERATION METHODS************/
 
-
+/*
     public void readEbayUrl(String keywords) {
         try {
             keywords = keywords.replaceAll(" ", "%20");
@@ -298,6 +303,6 @@ public class SearchActivity extends AppCompatActivity
         catch(IOException e) {
             Log.d("TAG", e.toString());
         }
-    }
+    }*/
     /****************** START USER STRING LISTENER & OPERATION METHODS************/
-}
+//}

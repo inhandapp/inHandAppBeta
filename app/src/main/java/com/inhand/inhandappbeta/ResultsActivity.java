@@ -69,16 +69,16 @@ public class ResultsActivity extends AppCompatActivity implements OnItemClickLis
             HashMap<String, String> map = new HashMap<String, String>();
             map.put("title", item.getTitle());
             map.put("currentPrice", item.getPrice());
-            //map.put("link", item.getLink());
+            map.put("link", item.getLink());
             data.add(map);
         }
 
         // create the resource, from, and to variables
         int resource = R.layout.listview_item;
-        String[] from = {"title", "currentPrice"};
-        //String[] from = {"title", "currentPrice", "link"};
-        int[] to = {R.id.titleTextView, R.id.currentPriceTextView};
-        //int[] to = {R.id.titleTextView, R.id.currentPriceTextView, R.id.linkTextView};
+        //String[] from = {"title", "currentPrice"};
+        String[] from = {"title", "currentPrice", "link"};
+        //int[] to = {R.id.titleTextView, R.id.currentPriceTextView};
+        int[] to = {R.id.titleTextView, R.id.currentPriceTextView, R.id.linkTextView};
 
         // create and set the adapter
         SimpleAdapter adapter =
