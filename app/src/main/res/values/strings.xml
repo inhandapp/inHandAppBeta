@@ -10,12 +10,13 @@
     <string name="aboutApp">Copyright © 2015 inHand Team. All rights reserved.
                                             </string>
     <string name="helpMenu">Help</string>
-    <string name="helpMessage">No help will be given, you are screwed.</string>
+    <string name="helpMessage">TBD</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="titleTextView">Item title</string>
+    <string name="titleTextView">Item name</string>
     <string name="item_link">Link to item</string>
+    <string name="current_price_text_view">Current Price</string>
     <!-- end menu -->
 
 </resources>

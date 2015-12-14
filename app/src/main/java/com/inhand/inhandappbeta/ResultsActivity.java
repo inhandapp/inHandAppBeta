@@ -70,8 +70,9 @@ public class ResultsActivity extends AppCompatActivity implements OnItemClickLis
         // create a List of Map<String, ?> objects
         ArrayList<HashMap<String, String>> data =
                 new ArrayList<HashMap<String, String>>();
+        HashMap<String, String> map;
         for (eBayItem item : items) {
-            HashMap<String, String> map = new HashMap<String, String>();
+            map = new HashMap<String, String>();
             map.put("title", item.getTitle());
             map.put("currentPrice", item.getPrice());
             map.put("viewItemURL", item.getLink());
@@ -152,7 +153,7 @@ public class ResultsActivity extends AppCompatActivity implements OnItemClickLis
             Log.d(TAG, "Search results read");
 
             // update the display for the activity
-            Intent intent = new Intent (getApplicationContext(), ResultsActivity.class);
+            Intent intent = new Intent (ResultsActivity.this, ResultsActivity.class);
             DataHolder.getInstance().setData(url);
             startActivity(intent);
         }

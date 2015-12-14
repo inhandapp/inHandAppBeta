@@ -8,9 +8,14 @@
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:text="Item Title"
-        android:textSize="24sp" />
+        android:text="@string/titleTextView"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/currentPriceTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/current_price_text_view"
+        android:textSize="12sp" />
 
 </LinearLayout>
