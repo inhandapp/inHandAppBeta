@@ -11,7 +11,7 @@ public class walmartURLHandler extends DefaultHandler {
 
     private boolean isTitle = false;
     private boolean isLink = false;
-    private boolean isCurrentPrice = false;
+    private boolean isMSRP = false;
 
     public walmartURL getFeed() {
         return feed;
@@ -29,15 +29,15 @@ public class walmartURLHandler extends DefaultHandler {
             item = new walmartItem();
             return;
         }
-        else if (qName.equals("title")) {
+        else if (qName.equals("name")) {
             isTitle = true;
             return;
         }
-        else if (qName.equals("currentPrice")) {
-            isCurrentPrice = true;
+        else if (qName.equals("msrp")) {
+            isMSRP = true;
             return;
         }
-        else if (qName.equals("link")) {
+        else if (qName.equals("productUrl")) {
             isLink = true;
             return;
         }
@@ -66,9 +66,9 @@ public class walmartURLHandler extends DefaultHandler {
             isTitle = false;
         }*/
         //else if (isCurrentPrice) {
-        if (isCurrentPrice) {
+        if (isMSRP) {
             item.setPrice(s);
-            isCurrentPrice = false;
+            isMSRP = false;
         }
         else if (isLink) {
             item.setLink(s);

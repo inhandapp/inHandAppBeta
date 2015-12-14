@@ -4,7 +4,17 @@ public class walmartItem {
 
     private String title = null;
     private String price = null;
+    private String image = null;
     private String link = null;
+
+    public walmartItem() {
+    }
+
+    public walmartItem(String title, String price, String link) {
+        this.title = title;
+        this.price = price;
+        this.link = link;
+    }
 
     public void setTitle(String title)     {
         this.title = title;

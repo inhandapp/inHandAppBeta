@@ -1,29 +1,27 @@
 package com.inhand.inhandappbeta;
 
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.util.Log;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.View;
-import android.view.MenuItem;
+import android.os.AsyncTask;
 import android.view.KeyEvent;
-import android.view.inputmethod.EditorInfo;
+import android.content.Intent;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
 import android.content.SharedPreferences;
+import android.view.inputmethod.EditorInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView.OnEditorActionListener;
 
-public class MainActivity extends AppCompatActivity
-        //implements OnKeyListener {
-        implements OnEditorActionListener {
+public class MainActivity extends AppCompatActivity implements OnEditorActionListener {
 
     //Define class variables
-    public eBayURL url;
-    private eBayFileIO io;
+    private static eBayURL ebayUrl;
+    private eBayFileIO ebayIo;
+    private walmartURL walmartUrl;
+    private walmartFileIO walmartIo;
+    private EbayDataHolder ebayDataHolder;
 
     //Define widget variables
     private EditText userEnteredSearchPhrase;
@@ -43,11 +41,10 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        io = new eBayFileIO(getApplicationContext());
+        ebayIo = new eBayFileIO(getApplicationContext());
+        //walmartIo = new walmartFileIO(getApplicationContext());
 
         userEnteredSearchPhrase = (EditText) findViewById(R.id.search_bar);
-
-        userEnteredSearchPhrase.setVisibility(View.GONE);
 
         //Set listener for EditText widget
         userEnteredSearchPhrase.setOnEditorActionListener(this);
@@ -66,33 +63,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_search:
-                launchSearchActivity();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    public void launchSearchActivity(){
-
-        if(userEnteredSearchPhrase.getVisibility() == View.GONE){
-            userEnteredSearchPhrase.setVisibility(View.VISIBLE);
-        }
-        else {
-            userEnteredSearchPhrase.setVisibility(View.GONE);
-        }
-    }
-
-    @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
         int keyCode = -1;
         if (event != null) {
@@ -104,6 +74,7 @@ public class MainActivity extends AppCompatActivity
                 keyCode == KeyEvent.KEYCODE_ENTER) {
 
             userEnteredSearchString = userEnteredSearchPhrase.getText().toString();
+
             new DownloadURL().execute();
         }
         return false;
@@ -112,13 +83,15 @@ public class MainActivity extends AppCompatActivity
     class DownloadURL extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {
-            io.downloadFile(userEnteredSearchString);
+            ebayIo.downloadFile(userEnteredSearchString);
+            //walmartIo.downloadFile(userEnteredSearchString);
             return null;
         }
 
         @Override
         protected void onPostExecute(Void result) {
             Log.d("MainActivity", "Search results downloaded");
+
             new ReadURL().execute();
         }
     }
@@ -126,7 +99,9 @@ public class MainActivity extends AppCompatActivity
     class ReadURL extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {
-            url = io.readFile();
+            ebayUrl = ebayIo.readFile();
+            //walmartUrl = walmartIo.readFile();
+
             return null;
         }
 
@@ -136,9 +111,11 @@ public class MainActivity extends AppCompatActivity
 
             // update the display for the activity
             Intent intent = new Intent (getApplicationContext(), ResultsActivity.class);
-            DataHolder.getInstance().setData(url);
+            DataHolder.getInstance().setEbayData(ebayUrl);
+            //ebayDataHolder.setEbayData(ebayUrl);
             startActivity(intent);
         }
+
     }
 /***************** END USER STRING LISTENER & OPERATION METHODS ********************/
 

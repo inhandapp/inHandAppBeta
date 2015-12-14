@@ -31,10 +31,6 @@ public class ResultsActivity extends AppCompatActivity implements OnItemClickLis
     public String userEnteredSearchString = "";
     private final String TAG = "ResultsActivity";
 
-    InHandDBHandler dbHandler;
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +77,7 @@ public class ResultsActivity extends AppCompatActivity implements OnItemClickLis
             map.put("currentPrice", item.getPrice());
             map.put("viewItemURL", item.getLink());
             eBayItem ebayitems = new eBayItem(item.getTitle(), item.getPrice(), item.getLink());
-            dbHandler.addeBayItems(ebayitems);
+            //InHandDBHandler.addItems(ebayitems);
             data.add(map);
         }
 
