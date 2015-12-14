@@ -1,10 +1,10 @@
 package com.inhand.inhandappbeta;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -17,13 +17,18 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ResultsActivity extends AppCompatActivity implements OnItemClickListener, OnEditorActionListener{
 
-    private eBayURL url;
-    private eBayFileIO io;
+    private eBayURL ebayUrl;
+    private eBayFileIO ebayIo;
+    private walmartURL walmartUrl;
+    private walmartFileIO walmartIo;
+
 
     private EditText userEnteredSearchPhrase;
     private ListView itemsListView;
@@ -39,7 +44,8 @@ public class ResultsActivity extends AppCompatActivity implements OnItemClickLis
         itemsListView = (ListView) findViewById(R.id.listView);
         userEnteredSearchPhrase = (EditText) findViewById(R.id.search_bar);
 
-        io = new eBayFileIO(getApplicationContext());
+        ebayIo = new eBayFileIO(getApplicationContext());
+        walmartIo = new walmartFileIO(getApplicationContext());
 
         itemsListView.setOnItemClickListener(this);
 
@@ -53,8 +59,8 @@ public class ResultsActivity extends AppCompatActivity implements OnItemClickLis
         } catch (NullPointerException e){
             Log.v(TAG, "NullPointer");
         }*/
-        url = DataHolder.getInstance().getData();
-        updateDisplay(url);
+        ebayUrl = DataHolder.getInstance().getEbayData();
+        updateDisplay(ebayUrl);
     }
 
     public void updateDisplay(eBayURL url)
@@ -76,8 +82,12 @@ public class ResultsActivity extends AppCompatActivity implements OnItemClickLis
             map.put("title", item.getTitle());
             map.put("currentPrice", item.getPrice());
             map.put("viewItemURL", item.getLink());
+            map.put("galleryURL", item.getImage());
+            LoadImageFromWebOperations(item.getImage());
+
             eBayItem ebayitems = new eBayItem(item.getTitle(), item.getPrice(), item.getLink());
             //InHandDBHandler.addItems(ebayitems);
+
             data.add(map);
         }
 
@@ -94,12 +104,22 @@ public class ResultsActivity extends AppCompatActivity implements OnItemClickLis
         Log.d(TAG, "Search results displayed");
     }
 
+    public static Drawable LoadImageFromWebOperations(String url) {
+        try {
+            InputStream is = (InputStream) new URL(url).getContent();
+            Drawable d = Drawable.createFromStream(is, "itemImageView");
+            return d;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
     @Override
     public void onItemClick(AdapterView<?> parent, View v,
                             int position, long id) {
 
         // get the item at the specified position
-        eBayItem item = url.getItem(position);
+        eBayItem item = ebayUrl.getItem(position);
 
         // create an intent
         Intent intent = new Intent(this, ItemActivity.class);
@@ -132,7 +152,7 @@ public class ResultsActivity extends AppCompatActivity implements OnItemClickLis
     class DownloadURL extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {
-            io.downloadFile(userEnteredSearchString);
+            ebayIo.downloadFile(userEnteredSearchString);
             return null;
         }
 
@@ -146,7 +166,7 @@ public class ResultsActivity extends AppCompatActivity implements OnItemClickLis
     class ReadURL extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {
-            url = io.readFile();
+            ebayUrl = ebayIo.readFile();
             return null;
         }
 
@@ -156,7 +176,7 @@ public class ResultsActivity extends AppCompatActivity implements OnItemClickLis
 
             // update the display for the activity
             Intent intent = new Intent (ResultsActivity.this, ResultsActivity.class);
-            DataHolder.getInstance().setData(url);
+            DataHolder.getInstance().setEbayData(ebayUrl);
             startActivity(intent);
         }
     }

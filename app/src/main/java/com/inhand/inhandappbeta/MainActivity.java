@@ -22,8 +22,11 @@ public class MainActivity extends AppCompatActivity
         implements OnEditorActionListener {
 
     //Define class variables
-    public eBayURL url;
-    private eBayFileIO io;
+    public eBayURL ebayUrl;
+    private eBayFileIO ebayIo;
+    private walmartURL walmartUrl;
+    private walmartFileIO walmartIo;
+
 
     //Define widget variables
     private EditText userEnteredSearchPhrase;
@@ -43,7 +46,8 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        io = new eBayFileIO(getApplicationContext());
+        ebayIo = new eBayFileIO(getApplicationContext());
+
 
         userEnteredSearchPhrase = (EditText) findViewById(R.id.search_bar);
 
@@ -112,7 +116,8 @@ public class MainActivity extends AppCompatActivity
     class DownloadURL extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {
-            io.downloadFile(userEnteredSearchString);
+            ebayIo.downloadFile(userEnteredSearchString);
+            walmartIo.downloadFile(userEnteredSearchString);
             return null;
         }
 
@@ -126,7 +131,8 @@ public class MainActivity extends AppCompatActivity
     class ReadURL extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {
-            url = io.readFile();
+            ebayUrl = ebayIo.readFile();
+            walmartUrl = walmartIo.readFile();
             return null;
         }
 
@@ -136,7 +142,8 @@ public class MainActivity extends AppCompatActivity
 
             // update the display for the activity
             Intent intent = new Intent (getApplicationContext(), ResultsActivity.class);
-            DataHolder.getInstance().setData(url);
+            EbayDataHolder.getEbayInstance().setEbayData(ebayUrl);
+            //WalmartDataHolder.getWalmartInstance().
             startActivity(intent);
         }
     }

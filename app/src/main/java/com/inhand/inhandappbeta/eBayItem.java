@@ -4,7 +4,7 @@ public class eBayItem {
 
     private String title = null; // title
     private String price = null; //price
-    //private String image = null; //image url
+    private String image = null; //image url
     private String link = null; //item url
 
     public eBayItem() {
@@ -13,7 +13,7 @@ public class eBayItem {
     public eBayItem(String title, String price, String link) {
         this.title = title;
         this.price = price;
-        //this.image = image;
+        this.image = image;
         this.link = link;
     }
 
@@ -40,4 +40,13 @@ public class eBayItem {
     public String getLink() {
         return link;
     }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
 }

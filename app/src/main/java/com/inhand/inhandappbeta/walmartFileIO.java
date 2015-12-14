@@ -5,14 +5,12 @@ import android.util.Log;
 import java.io.IOException;
 import java.io.InputStream;
 import org.xml.sax.XMLReader;
-import java.io.BufferedReader;
+
 import android.content.Context;
 import org.xml.sax.InputSource;
 import java.io.FileInputStream;
-import org.xml.sax.InputSource;
-import android.content.Context;
 import java.io.FileOutputStream;
-import java.io.InputStreamReader;
+
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
