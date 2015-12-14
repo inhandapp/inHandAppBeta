@@ -4,11 +4,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 public class ItemActivity extends Activity implements OnClickListener {
+
+    private static final String TAG = "ItemActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,15 +40,22 @@ public class ItemActivity extends Activity implements OnClickListener {
 
     @Override
     public void onClick(View v) {
-        // get the intent
-        Intent intent = getIntent();
+        String link = "";
+        try {
+            // get the intent
+            Intent intent = getIntent();
 
-        // get the Uri for the link
-        String link = intent.getStringExtra("link");
-        Uri viewUri = Uri.parse(link);
+            // get the Uri for the link
+            link = intent.getStringExtra("viewItemURL");
 
-        // create the intent and start it
-        Intent viewIntent = new Intent(Intent.ACTION_VIEW, viewUri);
-        startActivity(viewIntent);
+            Uri viewUri = Uri.parse(link);
+
+            // create the intent and start it
+            Intent viewIntent = new Intent(Intent.ACTION_VIEW, viewUri);
+            startActivity(viewIntent);
+        }
+        catch(NullPointerException e) {
+            Log.e(TAG, link);
+        }
     }
 }

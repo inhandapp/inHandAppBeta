@@ -18,7 +18,7 @@ import javax.xml.parsers.SAXParserFactory;
 
 public class walmartFileIO {
     private static final String TAG = "Walmart File IO";
-    private final String URL_STRING = "";
+    private final String URL_STRING = "http://api.walmartlabs.com/v1/search?apiKey=vy4y6fjwhy4kvpenemwacmfg&numItems=5&sort=bestseller&query=";
     private final String FILENAME = "walmart_search_results.xml";
     private Context context = null;
 
@@ -32,8 +32,7 @@ public class walmartFileIO {
             keywordsString = keywordsString.replaceAll(" ", "%20");
 
             // get the URL
-            // Need to concatenate keywordsString to URL_STRING. Researching Walmart request URL.
-            URL url = new URL(URL_STRING); // + keywordsString
+            URL url = new URL(URL_STRING + keywordsString); // + keywordsString
 
             // get the input stream
             InputStream in = url.openStream();

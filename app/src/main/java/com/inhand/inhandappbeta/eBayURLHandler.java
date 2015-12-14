@@ -37,7 +37,7 @@ public class eBayURLHandler extends DefaultHandler {
             isCurrentPrice = true;
             return;
         }
-        else if (qName.equals("link")) {
+        else if (qName.equals("viewItemURL")) {
             isLink = true;
             return;
         }
