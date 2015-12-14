@@ -22,11 +22,11 @@ public class MainActivity extends AppCompatActivity
         implements OnEditorActionListener {
 
     //Define class variables
-    public eBayURL ebayUrl;
+    private static eBayURL ebayUrl;
     private eBayFileIO ebayIo;
     private walmartURL walmartUrl;
     private walmartFileIO walmartIo;
-
+    private EbayDataHolder ebayDataHolder;
 
     //Define widget variables
     private EditText userEnteredSearchPhrase;
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         ebayIo = new eBayFileIO(getApplicationContext());
-
+        //walmartIo = new walmartFileIO(getApplicationContext());
 
         userEnteredSearchPhrase = (EditText) findViewById(R.id.search_bar);
 
@@ -117,13 +117,14 @@ public class MainActivity extends AppCompatActivity
         @Override
         protected Void doInBackground(Void... params) {
             ebayIo.downloadFile(userEnteredSearchString);
-            walmartIo.downloadFile(userEnteredSearchString);
+            //walmartIo.downloadFile(userEnteredSearchString);
             return null;
         }
 
         @Override
         protected void onPostExecute(Void result) {
             Log.d("MainActivity", "Search results downloaded");
+
             new ReadURL().execute();
         }
     }
@@ -132,7 +133,8 @@ public class MainActivity extends AppCompatActivity
         @Override
         protected Void doInBackground(Void... params) {
             ebayUrl = ebayIo.readFile();
-            walmartUrl = walmartIo.readFile();
+            //walmartUrl = walmartIo.readFile();
+
             return null;
         }
 
@@ -142,10 +144,11 @@ public class MainActivity extends AppCompatActivity
 
             // update the display for the activity
             Intent intent = new Intent (getApplicationContext(), ResultsActivity.class);
-            EbayDataHolder.getEbayInstance().setEbayData(ebayUrl);
-            //WalmartDataHolder.getWalmartInstance().
+            DataHolder.getInstance().setEbayData(ebayUrl);
+            //ebayDataHolder.setEbayData(ebayUrl);
             startActivity(intent);
         }
+
     }
 /***************** END USER STRING LISTENER & OPERATION METHODS ********************/
 
