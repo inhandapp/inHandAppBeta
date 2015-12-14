@@ -1,25 +1,20 @@
 package com.inhand.inhandappbeta;
 
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.util.Log;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.View;
-import android.view.MenuItem;
+import android.os.AsyncTask;
 import android.view.KeyEvent;
-import android.view.inputmethod.EditorInfo;
+import android.content.Intent;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
 import android.content.SharedPreferences;
+import android.view.inputmethod.EditorInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView.OnEditorActionListener;
 
-public class MainActivity extends AppCompatActivity
-        //implements OnKeyListener {
-        implements OnEditorActionListener {
+public class MainActivity extends AppCompatActivity implements OnEditorActionListener {
 
     //Define class variables
     private static eBayURL ebayUrl;
@@ -51,8 +46,6 @@ public class MainActivity extends AppCompatActivity
 
         userEnteredSearchPhrase = (EditText) findViewById(R.id.search_bar);
 
-        userEnteredSearchPhrase.setVisibility(View.GONE);
-
         //Set listener for EditText widget
         userEnteredSearchPhrase.setOnEditorActionListener(this);
 
@@ -70,33 +63,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_search:
-                launchSearchActivity();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    public void launchSearchActivity(){
-
-        if(userEnteredSearchPhrase.getVisibility() == View.GONE){
-            userEnteredSearchPhrase.setVisibility(View.VISIBLE);
-        }
-        else {
-            userEnteredSearchPhrase.setVisibility(View.GONE);
-        }
-    }
-
-    @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
         int keyCode = -1;
         if (event != null) {
@@ -108,6 +74,7 @@ public class MainActivity extends AppCompatActivity
                 keyCode == KeyEvent.KEYCODE_ENTER) {
 
             userEnteredSearchString = userEnteredSearchPhrase.getText().toString();
+
             new DownloadURL().execute();
         }
         return false;

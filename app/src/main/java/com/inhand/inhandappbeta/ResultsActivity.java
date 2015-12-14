@@ -1,26 +1,27 @@
 package com.inhand.inhandappbeta;
 
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
+import java.net.URL;
+import android.net.Uri;
 import android.util.Log;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
+import java.util.HashMap;
+import java.io.InputStream;
+import java.util.ArrayList;
+import android.os.AsyncTask;
+import android.view.KeyEvent;
+import android.content.Intent;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.AdapterView;
+import android.widget.SimpleAdapter;
+import android.support.v7.widget.Toolbar;
+import android.graphics.drawable.Drawable;
+import android.view.inputmethod.EditorInfo;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView.OnEditorActionListener;
-
-import java.io.InputStream;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class ResultsActivity extends AppCompatActivity implements OnItemClickListener, OnEditorActionListener{
 
@@ -28,6 +29,9 @@ public class ResultsActivity extends AppCompatActivity implements OnItemClickLis
     private eBayFileIO ebayIo;
     private walmartURL walmartUrl;
     private walmartFileIO walmartIo;
+
+
+
 
 
     private EditText userEnteredSearchPhrase;
@@ -50,7 +54,6 @@ public class ResultsActivity extends AppCompatActivity implements OnItemClickLis
         itemsListView.setOnItemClickListener(this);
 
         //include toolbar
-        /*
         try {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.logo_bar);
         setSupportActionBar(myToolbar);
@@ -58,7 +61,9 @@ public class ResultsActivity extends AppCompatActivity implements OnItemClickLis
             getSupportActionBar().setDisplayShowTitleEnabled(false);
         } catch (NullPointerException e){
             Log.v(TAG, "NullPointer");
-        }*/
+        }
+
+
         ebayUrl = DataHolder.getInstance().getEbayData();
         updateDisplay(ebayUrl);
     }
@@ -128,7 +133,10 @@ public class ResultsActivity extends AppCompatActivity implements OnItemClickLis
         intent.putExtra("currentPrice", item.getPrice());
         intent.putExtra("viewItemURL", item.getLink());
 
-        this.startActivity(intent);
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(item.getLink()));
+        startActivity(browserIntent);
+
+        this.startActivity(browserIntent);
     }
 
 
