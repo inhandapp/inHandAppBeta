@@ -76,6 +76,8 @@ public class ResultsActivity extends AppCompatActivity implements OnItemClickLis
             map.put("title", item.getTitle());
             map.put("currentPrice", item.getPrice());
             map.put("viewItemURL", item.getLink());
+            eBayItem ebayitems = new eBayItem(item.getTitle(), item.getPrice(), item.getLink());
+            //InHandDBHandler.addItems(ebayitems);
             data.add(map);
         }
 
