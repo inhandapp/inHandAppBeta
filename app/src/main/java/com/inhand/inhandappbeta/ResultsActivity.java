@@ -1,6 +1,7 @@
 package com.inhand.inhandappbeta;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.os.Bundle;
@@ -108,7 +109,10 @@ public class ResultsActivity extends AppCompatActivity implements OnItemClickLis
         intent.putExtra("currentPrice", item.getPrice());
         intent.putExtra("viewItemURL", item.getLink());
 
-        this.startActivity(intent);
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(item.getLink()));
+
+
+        this.startActivity(browserIntent);
     }
 
 
