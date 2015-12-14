@@ -25,7 +25,6 @@ public class InHandDBHandler extends SQLiteOpenHelper {
     public static final String COLUMN_PRICE = "eBayItemPrice";
     public static final String COLUMN_URL = "eBayItemURL";
 
-    public SQLiteDatabase db;
 
     public InHandDBHandler(Context context, String name,
                            SQLiteDatabase.CursorFactory factory, int version) {
