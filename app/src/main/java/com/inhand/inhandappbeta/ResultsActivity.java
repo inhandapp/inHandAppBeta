@@ -53,7 +53,7 @@ public class ResultsActivity extends AppCompatActivity implements OnItemClickLis
         } catch (NullPointerException e){
             Log.v(TAG, "NullPointer");
         }*/
-        url = DataHolder.getInstance().getData();
+        url = DataHolder.getInstance().getEbayData();
         updateDisplay(url);
     }
 
@@ -156,7 +156,7 @@ public class ResultsActivity extends AppCompatActivity implements OnItemClickLis
 
             // update the display for the activity
             Intent intent = new Intent (ResultsActivity.this, ResultsActivity.class);
-            DataHolder.getInstance().setData(url);
+            DataHolder.getInstance().setEbayData(url);
             startActivity(intent);
         }
     }
